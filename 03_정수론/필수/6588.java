@@ -9,7 +9,6 @@ public class 6588 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         boolean[] findDecimal = decimalArray();
 
-
         // 0이 입력되기 전까지 값을 입력받는다.
 
         while (true){
