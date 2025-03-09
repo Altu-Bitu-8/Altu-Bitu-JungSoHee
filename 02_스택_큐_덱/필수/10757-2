@@ -1,0 +1,46 @@
+import java.util.*;
+
+public class 10757_2 {
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+
+        String a = s.next();
+        String b = s.next();
+
+        // 입력받은 a, b에 대해 max 길이 구하기
+        int maxLength = Math.max(a.length(), b.length());
+
+        // a, b의 자리수를 활용할 것이므로 max 길이만큼 배열 설정해주기
+        int[] arrA = new int[maxLength+1];
+        int[] arrB = new int[maxLength+1];
+
+        int[] result = new int[maxLength+1];
+
+
+        // 입력받은 값을 배열에 채워주기
+        // 일의 자리수부터 배열의 index 0에 채워주기
+        for (int i = a.length()-1, index =0 ; i >= 0 ; i--, index++) {
+            arrA[index] = a.charAt(i) - '0';
+        }
+        for (int i = b.length()-1, index =0 ; i >= 0 ; i--, index++) {
+            arrB[index] = b.charAt(i) - '0';
+        }
+
+
+        for (int i = 0; i < maxLength; i++) {
+            // 두 수를 더했을 때의 최댓값은 18. 즉, 다음 자릿수에 +1이 되는게 최대인 상황
+            // 몫을 다음 자릿수에 넘겨준다.
+            result[i+1] = (result[i] +arrA[i] + arrB[i])/10;
+            result[i] = (result[i]+arrA[i] + arrB[i])%10;
+        }
+
+        if (result[maxLength] != 0){
+            System.out.print(result[maxLength]);
+        }
+        for (int i = maxLength-1; i >= 0 ; i--) {
+            // 맨 앞자리가 0인 경우에만 패스
+            System.out.print(result[i]);
+        }
+
+    }
+}
